@@ -20,7 +20,7 @@ nav > a {
 }
 
 #introduction {
-	height: 100vh;
+	min-height: 100vh;
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -31,6 +31,36 @@ nav > a {
 	flex-direction: column;
 	align-items: center;
 	margin-right: 150px;
+	margin-left: 150px;
+}
+
+#introduction > img {
+	width: 35vw;
+	margin-right: 150px;
+	/* margin-top: 50px;
+	margin-bottom: 50px; */
+}
+
+@media (max-width: 1300px) {
+	#introduction {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+	}
+	
+	#introduction > img {
+		margin-right: 0;
+		margin-bottom: 50px;
+	}
+	
+	#introduction > div {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		margin-right: 50px;
+		margin-left: 50px;
+	}
 }
 
 p {

@@ -31,10 +31,14 @@ nav > a {
 	/* position: absolute; */
 	/* background-color: black; */
 	display: flex;
+	align-items: center;
 }
 
 .cat > img {
 	width: 30vw;
+	margin-left: 10vw;
+	margin-right: 10vw;
+	margin-bottom: 70px;
 }
 
 .cat > h1, #cats > h1 {
@@ -44,9 +48,29 @@ nav > a {
 	
 	font-size: 5rem;
 	background-image: url("https://images.template.net/wp-content/uploads/2016/12/02123619/Architecture-Index-Card.jpg");
-	background-size: 600px 360px;
-	width: 600px;
-	height: 360px;
+	background-size: 40vw 24vw;
+	width: 40vw;
+	height: 24vw;
+}
+
+@media (max-width: 700px) {
+	.cat > h1, #cats > h1 {
+		background-size: 400px 240px;
+		width: 400px;
+		height: 240px;
+	}
+	
+	.cat > img {
+		width: 60vw;
+		margin-left: 20vw;
+		margin-right: 20vw;
+		margin-bottom: 70px;
+	}
+	
+	.cat {
+		flex-direction: column;
+		justify-content: center;
+	}
 }
 
 * {
