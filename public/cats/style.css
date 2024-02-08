@@ -7,7 +7,7 @@ body {
 }
 
 nav {
-	background-color: #ffa82e;
+	/* background-color: #ffa82e; */
 	font-size: 1.2rem;
 	padding: 15px;
 }
@@ -18,6 +18,7 @@ nav > a {
 	padding: 5px;
 	color: black;
 	text-decoration: none;
+	background-color: #ffea00;
 }
 
 #cats {
@@ -41,7 +42,7 @@ nav > a {
 	margin-bottom: 70px;
 }
 
-.cat > h1, #cats > h1 {
+.cat > h1, #cats > h1  {
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -51,6 +52,11 @@ nav > a {
 	background-size: 40vw 24vw;
 	width: 40vw;
 	height: 24vw;
+}
+
+#cats > p {
+	font-size: 2rem;
+	background-color: #ffea00;
 }
 
 @media (max-width: 700px) {
