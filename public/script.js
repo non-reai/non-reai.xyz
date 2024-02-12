@@ -17,4 +17,5 @@ $("#newsletter-subscribe").addEventListener("click", async ()=>{
 		body: JSON.stringify(data)
 	})
 	$("#newsletter").innerHTML = "<h1>Signed up successfully!</h1>"
+	
 })
