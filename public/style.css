@@ -41,6 +41,53 @@ nav > a {
 	margin-bottom: 50px; */
 }
 
+.gradient {
+	width: 100%;
+	height: 10vh;
+}
+
+#introduction-newsletter {
+	background-image: linear-gradient(#ffe070,#c2ec74);
+}
+
+#newsletter {
+	min-height: 50vh;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	background-color: #c2ec74;
+	/* justify-content: center; */
+}
+
+#newsletter > h1 {
+	font-size: 3rem;
+}
+
+#newsletter > input {
+	box-sizing: content-box;
+	width: 50vw;
+	height: 5vh;
+	padding: 5px;
+	font-size: 2rem;
+	margin-bottom: 5px;
+	text-align: center;
+	border: none;
+	background-color: #ffffff;
+	color: black;
+	border-radius: 10px;
+	transition: 0.5s;
+}
+
+#newsletter > input[type="button"] {
+	background-color: #84ad38;
+	color: white;
+}
+
+#newsletter > input[type="button"]:hover {
+	background-color: #a8d25b;
+	color: white;
+}
+
 @media (max-width: 1300px) {
 	#introduction {
 		display: flex;
