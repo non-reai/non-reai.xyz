@@ -11,7 +11,24 @@ app.use("/", express.static(join(__dirname, "public")));
 
 app.use(express.json());
 
+let ratelimitedIps = []
+
+
 app.post("/newsletter", async (req, res) => {
+	console.log(ratelimitedIps)
+	if (ratelimitedIps.includes(req.headers["x-forwarded-for"].split(", ")[0])) {
+		console.log("reject")
+		res.statusCode = 429
+		res.end("ratelimit")
+		return
+	}
+
+	ratelimitedIps[ratelimitedIps.length] = req.headers["x-forwarded-for"].split(", ")[0]
+
+	setTimeout(()=>{
+		ratelimitedIps.splice(ratelimitedIps.indexOf(req.headers["x-forwarded-for"].split(", ")[0]))
+	},300000)
+	
   let data = {
     email: req.body.email,
     newsletterIds: [
@@ -20,7 +37,7 @@ app.post("/newsletter", async (req, res) => {
       "8aa18d8e-d00a-4b1a-afb2-dd1abf9edfa3",
     ],
   };
-  let response = await fetch(
+  await fetch(
     "https://www.theblock.co/api/newsletters/subscribe",
     {
       headers: {
@@ -62,7 +79,7 @@ app.post("/newsletter", async (req, res) => {
     },
   );
 
-  res.end(await response.text());
+  res.end("success");
 });
 
 app.listen(5230);
