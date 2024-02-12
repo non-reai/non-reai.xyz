@@ -6,6 +6,12 @@ const $ = (...args)=>{
 }
 
 $("#newsletter-subscribe").addEventListener("click", async ()=>{
+	if (!$("#newsletter-email").value.match(/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/)) {
+		$("#newsletter-email").style.outline = "solid #fa283d 3px"
+		return
+	}
+	$("#newsletter-email").disabled = true
+	$("#newsletter-subscribe").disabled = true
 	const data = {
 		email: $("#newsletter-email").value
 	}
@@ -17,5 +23,4 @@ $("#newsletter-subscribe").addEventListener("click", async ()=>{
 		body: JSON.stringify(data)
 	})
 	$("#newsletter").innerHTML = "<h1>Signed up successfully!</h1>"
-	
 })

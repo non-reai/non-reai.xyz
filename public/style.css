@@ -43,7 +43,7 @@ nav > a {
 
 .gradient {
 	width: 100%;
-	height: 10vh;
+	height: 15vh;
 }
 
 #introduction-newsletter {
@@ -75,12 +75,12 @@ nav > a {
 	background-color: #ffffff;
 	color: black;
 	border-radius: 10px;
-	transition: 0.5s;
 }
 
 #newsletter > input[type="button"] {
 	background-color: #84ad38;
 	color: white;
+	transition: background-color 0.5s;
 }
 
 #newsletter > input[type="button"]:hover {
