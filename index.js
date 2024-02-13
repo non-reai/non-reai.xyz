@@ -13,10 +13,9 @@ app.use(express.json());
 
 let ratelimitedIps = []
 
-
 app.post("/newsletter", async (req, res) => {
 	console.log("signed up to newsletter!!")
-	
+	console.log(ratelimitedIps,req.headers["x-forwarded-for"].split(", ")[0])
 	if (ratelimitedIps.includes(req.headers["x-forwarded-for"].split(", ")[0])) {
 		res.statusCode = 429
 		res.end("ratelimit")
