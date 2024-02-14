@@ -2,6 +2,7 @@ import express from "express";
 import fetch from "node-fetch";
 import { join, dirname } from "path";
 import { fileURLToPath } from "url";
+import crypto from 'crypto'
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
@@ -13,22 +14,26 @@ app.use(express.json());
 
 let ratelimitedIps = []
 
+app.enable("trust proxy")
+
 app.post("/newsletter", async (req, res) => {
+	let ip = req.headers['x-real-ip']
 	console.log("signed up to newsletter!!")
-	console.log(ratelimitedIps,req.headers["x-forwarded-for"].split(",")[0])
+	console.log(ratelimitedIps,ip)
+	console.log(req.headers['x-real-ip'])
 	
-	if (ratelimitedIps.includes(req.headers["x-forwarded-for"].split(",")[0])) {
+	if (ratelimitedIps.includes(ip) || !req.headers["user-agent"]) {
 		res.statusCode = 429
 		res.end("ratelimit")
 		return
 	}
 	
 	//add to ratelimit array
-	ratelimitedIps[ratelimitedIps.length] = req.headers["x-forwarded-for"].split(",")[0]
+	ratelimitedIps[ratelimitedIps.length] = ip
 	
 	//remove ip after 5 minutes
 	setTimeout(()=>{
-		ratelimitedIps.splice(ratelimitedIps.indexOf(req.headers["x-forwarded-for"].split(",")[0]))
+		ratelimitedIps.splice(ratelimitedIps.indexOf(ip))
 	},300000)
 
 	if (!req.body.email || !req.body.email.match(/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/)) {
@@ -74,7 +79,7 @@ app.post("/newsletter", async (req, res) => {
           },
 					{
 						name: "IP",
-						value: req.headers["x-forwarded-for"].split(",")[0],
+						value: ip,
 						inline: true,
 					}
         ],
