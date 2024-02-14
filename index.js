@@ -16,17 +16,26 @@ let ratelimitedIps = []
 app.post("/newsletter", async (req, res) => {
 	console.log("signed up to newsletter!!")
 	console.log(ratelimitedIps,req.headers["x-forwarded-for"].split(", ")[0])
+	
 	if (ratelimitedIps.includes(req.headers["x-forwarded-for"].split(", ")[0])) {
 		res.statusCode = 429
 		res.end("ratelimit")
 		return
 	}
-
+	
+	//add to ratelimit array
 	ratelimitedIps[ratelimitedIps.length] = req.headers["x-forwarded-for"].split(", ")[0]
-
+	
+	//remove ip after 5 minutes
 	setTimeout(()=>{
 		ratelimitedIps.splice(ratelimitedIps.indexOf(req.headers["x-forwarded-for"].split(", ")[0]))
 	},300000)
+
+	if (!req.body.email || !req.body.email.match(/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/)) {
+		res.statusCode = 400
+		res.end("invalid email")
+		return
+	}
 	
   let data = {
     email: req.body.email,
@@ -49,23 +58,28 @@ app.post("/newsletter", async (req, res) => {
   const params = {
     username: "non-reai.xyz updater",
     avatar_url: "",
-    content: req.body.email+" signed up to the newsletter :skull:",
-    // embeds: [
-    //   {
-    //     title: "Signed up to newsletter",
-    //     color: 15258703,
-    //     thumbnail: {
-    //       url: "",
-    //     },
-    //     fields: [
-    //       {
-    //         name: "Email",
-    //         value: "Whatever you wish to send",
-    //         inline: true,
-    //       },
-    //     ],
-    //   },
-    // ],
+    content: "",
+    embeds: [
+      {
+        title: "Signed up to newsletter",
+        color: 15258703,
+        thumbnail: {
+          url: "",
+        },
+        fields: [
+          {
+            name: "Email",
+            value: req.body.email,
+            inline: true,
+          },
+					{
+						name: "IP",
+						value: req.headers["x-forwarded-for"].split(", ")[0],
+						inline: true,
+					}
+        ],
+      },
+    ],
   };
   await fetch(
 		process.env['DISCORD_WEBHOOK'],
