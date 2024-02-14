@@ -15,20 +15,20 @@ let ratelimitedIps = []
 
 app.post("/newsletter", async (req, res) => {
 	console.log("signed up to newsletter!!")
-	console.log(ratelimitedIps,req.headers["x-forwarded-for"].split(", ")[0])
+	console.log(ratelimitedIps,req.headers["x-forwarded-for"].split(",")[0])
 	
-	if (ratelimitedIps.includes(req.headers["x-forwarded-for"].split(", ")[0])) {
+	if (ratelimitedIps.includes(req.headers["x-forwarded-for"].split(",")[0])) {
 		res.statusCode = 429
 		res.end("ratelimit")
 		return
 	}
 	
 	//add to ratelimit array
-	ratelimitedIps[ratelimitedIps.length] = req.headers["x-forwarded-for"].split(", ")[0]
+	ratelimitedIps[ratelimitedIps.length] = req.headers["x-forwarded-for"].split(",")[0]
 	
 	//remove ip after 5 minutes
 	setTimeout(()=>{
-		ratelimitedIps.splice(ratelimitedIps.indexOf(req.headers["x-forwarded-for"].split(", ")[0]))
+		ratelimitedIps.splice(ratelimitedIps.indexOf(req.headers["x-forwarded-for"].split(",")[0]))
 	},300000)
 
 	if (!req.body.email || !req.body.email.match(/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/)) {
@@ -74,7 +74,7 @@ app.post("/newsletter", async (req, res) => {
           },
 					{
 						name: "IP",
-						value: req.headers["x-forwarded-for"].split(", ")[0],
+						value: req.headers["x-forwarded-for"].split(",")[0],
 						inline: true,
 					}
         ],
