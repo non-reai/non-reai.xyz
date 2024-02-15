@@ -22,7 +22,7 @@ app.post("/newsletter", async (req, res) => {
 	console.log(ratelimitedIps,ip)
 	console.log(req.headers['x-real-ip'])
 	
-	if (ratelimitedIps.includes(ip) || !req.headers["user-agent"]) {
+	if (ratelimitedIps.includes(ip) || !ip) {
 		res.statusCode = 429
 		res.end("ratelimit")
 		return
