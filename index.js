@@ -1,8 +1,11 @@
 import express from "express";
 import fetch from "node-fetch";
+import dotenv from "dotenv";
 import { join, dirname } from "path";
 import { fileURLToPath } from "url";
 import crypto from 'crypto'
+
+dotenv.config()
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
