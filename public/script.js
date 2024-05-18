@@ -5,22 +5,31 @@ const $ = (...args)=>{
 	return document.querySelector(...args)
 }
 
-$("#newsletter-subscribe").addEventListener("click", async ()=>{
-	if (!$("#newsletter-email").value.match(/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/)) {
-		$("#newsletter-email").style.outline = "solid #fa283d 3px"
-		return
-	}
-	$("#newsletter-email").disabled = true
-	$("#newsletter-subscribe").disabled = true
-	const data = {
-		email: $("#newsletter-email").value
-	}
-	const response = await fetch("/newsletter", {
-		method: 'POST',
-		headers: {
-			'Content-Type': 'application/json',
-		},
-		body: JSON.stringify(data)
-	})
-	$("#newsletter").innerHTML = "<h1>Signed up successfully!</h1>"
+const start = new Date(1716462000000).getTime()
+const end = new Date(1722900065000).getTime()
+
+setInterval(()=>{
+	const percentage = (new Date().getTime() - start) / (end - start) * 100
+	$("#progress-bar").innerText = percentage.toString().padEnd(19,'0') + "%"
+	$("#progress-bar").style.background = `linear-gradient(90deg, red ${percentage}%, white ${percentage}%)`
 })
+
+// $("#newsletter-subscribe").addEventListener("click", async ()=>{
+// 	if (!$("#newsletter-email").value.match(/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/)) {
+// 		$("#newsletter-email").style.outline = "solid #fa283d 3px"
+// 		return
+// 	}
+// 	$("#newsletter-email").disabled = true
+// 	$("#newsletter-subscribe").disabled = true
+// 	const data = {
+// 		email: $("#newsletter-email").value
+// 	}
+// 	const response = await fetch("/newsletter", {
+// 		method: 'POST',
+// 		headers: {
+// 			'Content-Type': 'application/json',
+// 		},
+// 		body: JSON.stringify(data)
+// 	})
+// 	$("#newsletter").innerHTML = "<h1>Signed up successfully!</h1>"
+// })

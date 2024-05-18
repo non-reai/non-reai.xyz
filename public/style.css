@@ -20,7 +20,7 @@ nav > a {
 }
 
 #introduction {
-	min-height: 100vh;
+	height: 100vh;
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -35,10 +35,9 @@ nav > a {
 }
 
 #introduction > img {
-	width: 35vw;
+	height: 90%;
+	margin: 50px;
 	margin-right: 150px;
-	/* margin-top: 50px;
-	margin-bottom: 50px; */
 }
 
 .gradient {
@@ -88,8 +87,33 @@ nav > a {
 	color: white;
 }
 
+#summer-progress-bar-section {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+#summer-progress-bar-section > h1 {
+	font-size: 3rem;
+	margin-bottom: 0;
+}
+
+#progress-bar {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-family: "Courier New";
+	font-size: 2rem;
+	height: 10vh;
+	margin: 100px;
+	width: 80%;
+	background-color: white;
+}
+
 @media (max-width: 1300px) {
 	#introduction {
+		height: 250vh;
 		display: flex;
 		flex-direction: column;
 		align-items: center;
@@ -97,8 +121,8 @@ nav > a {
 	}
 	
 	#introduction > img {
-		margin-right: 0;
-		margin-bottom: 50px;
+		height: 30%;
+		margin: 50px;
 	}
 	
 	#introduction > div {
