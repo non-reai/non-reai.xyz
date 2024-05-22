@@ -5,7 +5,7 @@ const $ = (...args)=>{
 	return document.querySelector(...args)
 }
 
-const start = new Date(1716462000000).getTime()
+const start = new Date(1716364800000).getTime()
 const end = new Date(1722900065000).getTime()
 
 setInterval(()=>{
