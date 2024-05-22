@@ -10,7 +10,7 @@ const end = new Date(1722900065000).getTime()
 
 setInterval(()=>{
 	const percentage = (new Date().getTime() - start) / (end - start) * 100
-	$("#progress-bar").innerText = percentage.toString().padEnd(19,'0') + "%"
+	$("#progress-bar").innerText = percentage.toString().substring(0,15) + "%"
 	$("#progress-bar").style.background = `linear-gradient(90deg, red ${percentage}%, white ${percentage}%)`
 })
 
