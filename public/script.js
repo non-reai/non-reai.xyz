@@ -6,7 +6,7 @@ const $ = (...args)=>{
 }
 
 const start = new Date(1716364800000).getTime()
-const end = new Date(1722900065000).getTime()
+const end = new Date(1716408000000).getTime()
 
 setInterval(()=>{
 	const percentage = (new Date().getTime() - start) / (end - start) * 100
