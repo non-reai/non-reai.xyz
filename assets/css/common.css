@@ -1,0 +1,106 @@
+@import url('https://fonts.googleapis.com/css2?family=Karla:ital,wght@0,200..800;1,200..800&display=swap');
+
+body {
+	display: flex;
+	flex-direction: column;
+	align-items: stretch;
+	justify-content: center;
+	background-color: #FFFA8D;
+	margin: 0;
+}
+
+nav {
+	display: flex;
+	position: absolute;
+	top: 0;
+	width: 100%;
+	align-items: center;
+	background-color: #FFB03A;
+	height: 8vh;
+	box-shadow: 0 5px 4px 0 rgba(0,0,0,0.25);
+}
+
+nav > a {
+	margin-left: 10px;
+	font-size: 1.5rem;
+	color: black;
+	font-weight: bold;
+	text-decoration: none;
+	transform: translateY(3px);
+	/* padding-bottom: 3px; */
+	transition: 500ms;
+}
+
+nav > a:after {
+	display: block;
+	content: "";
+	padding-bottom: 3px;
+	transform: scaleX(0);
+	border-bottom: solid black 3px;
+	transition: transform 500ms;
+}
+
+nav > a:hover {
+	transform: translate(-2px, 1px);
+	text-shadow: 2px 2px 3px rgba(0,0,0,0.5);
+}
+
+nav > a:hover:after {
+	transform: scaleX(100%);
+}
+
+/* nav > a > img {
+	width: 40%;
+	height: 40%;
+	aspect-ratio: 1 / 1;
+} */
+
+nav > span {
+	font-weight: 900;
+	font-size: 1.5rem;
+	margin-left: 10px;
+	color: rgba(0,0,0,0.3);
+}
+
+.flex-row {
+	display: flex;
+	flex-direction: row;
+}
+
+.flex-column {
+	display: flex;
+	flex-direction: column;
+}
+
+.no-margin {
+	margin: 0;
+}
+
+.underlined {
+	text-decoration: underline;
+}
+
+.unbolded {
+	font-weight: normal;
+}
+
+.semi-bolded {
+	font-weight: 500;
+}
+
+h1 {
+	font-size: 3.5rem;
+}
+
+h2 {
+	font-size: 3rem;
+}
+
+h3 {
+	font-size: 2.5rem;
+}
+
+* {
+	font-family: "Karla";
+	/* background-color: rgba(0,255,0,0.1); */
+}
