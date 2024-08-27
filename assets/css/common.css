@@ -88,6 +88,10 @@ nav > span {
 	font-weight: 500;
 }
 
+.no-display {
+	display: none;
+}
+
 h1 {
 	font-size: 3.5rem;
 }

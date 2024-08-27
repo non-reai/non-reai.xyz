@@ -1,4 +1,5 @@
 node_modules/
+assets/json/MOTD.json
 .replit
 replit.nix
 .env

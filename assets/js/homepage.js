@@ -15,10 +15,17 @@ function getPosition(element) {
 const updateFrame = function() {
 	const rect = getPosition($("#introduction > div:nth-child(2) > img"))
 	const arrowElement = $("#introduction > div:nth-child(1) > div")
+	arrowElement.classList.remove("no-display")
 	arrowElement.style.top = `${rect.top + rect.height - 100}px`
-	arrowElement.style.left = `${rect.left - rect.width - 20}px`
+	arrowElement.style.right = `${rect.left - rect.width - arrowElement.getBoundingClientRect().width + 20}px`
 	
 	requestAnimationFrame(updateFrame)
 }
 
 requestAnimationFrame(updateFrame)
+
+const MOTDResponse = await fetch("/assets/json/MOTD.json")
+const MOTD = (await MOTDResponse.json())
+
+$("#title-of-the-day").innerText = MOTD.TOTD
+$("#message-of-the-day").innerText = MOTD.MOTD
