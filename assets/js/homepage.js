@@ -17,7 +17,7 @@ const updateFrame = function() {
 	const arrowElement = $("#introduction > div:nth-child(1) > div")
 	arrowElement.classList.remove("no-display")
 	arrowElement.style.top = `${rect.top + rect.height - 100}px`
-	arrowElement.style.right = `${rect.left - rect.width - arrowElement.getBoundingClientRect().width + 20}px`
+	arrowElement.style.right = `${window.innerWidth - rect.left + 30}px`
 	
 	requestAnimationFrame(updateFrame)
 }
