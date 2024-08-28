@@ -1,8 +1,7 @@
 #introduction {
 	justify-content: space-around;
 	align-items: center;
-	height: 75vh;
-	margin-top: 15vh;
+	height: 90vh;
 }
 
 #introduction > div:nth-child(1) {
@@ -20,13 +19,54 @@
 
 #introduction > div:nth-child(2) {
 	display: flex;
-	width: 30%;
-	justify-content: flex-end;
+	/* width: 30%; */
+	height: 80%;
+	/* justify-content: flex-start; */
 }
 
 #introduction > div:nth-child(2) > img {
 	box-shadow: 10px 10px 5px 0 rgba(0,0,0,0.2);
-	width: 75%;
+	height: 100%;
+}
+
+@media only screen and (max-width: 1000px) {
+	#introduction {
+		flex-direction: column;
+		justify-content: center;
+		height: 150vh;
+	}
+
+	#introduction > div:nth-child(1) {
+		min-height: 30%;
+		height: auto;
+		width: 80%;
+	}
+
+	#introduction > div:nth-child(2) {
+		display: flex;
+		height: 60%;
+	}
+}
+
+#school-progress-bar {
+	align-items: center;
+}
+
+#school-progress-bar > h1 {
+	text-align: center;
+}
+
+#school-progress-bar > div {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-family: "Courier New";
+	font-size: 2rem;
+	height: 10vh;
+	margin: 100px;
+	margin-top: 0;
+	width: 80%;
+	background-color: white;
 }
 
 * {
