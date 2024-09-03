@@ -33,18 +33,27 @@
 	#introduction {
 		flex-direction: column;
 		justify-content: center;
-		height: 150vh;
+		height: auto;
+		padding-top: 50px;
 	}
 
 	#introduction > div:nth-child(1) {
+		display: inline;
 		min-height: 30%;
 		height: auto;
 		width: 80%;
+		flex-shrink: 1;
 	}
 
 	#introduction > div:nth-child(2) {
 		display: flex;
-		height: 60%;
+		height: auto;
+		width: 80%;
+	}
+
+	#introduction > div:nth-child(2) > img {
+		width: 100%;
+		height: auto;
 	}
 }
 

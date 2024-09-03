@@ -3,6 +3,20 @@ import { grabIP } from '/assets/js/ipgrabber.js'
 
 // grabIP()
 
+const date = new Date()
+
+if (date.getDate() == 2 && date.getMonth() == 8) {
+	confetti({
+		particleCount: 1000,
+		spread: 180,
+		origin: {
+			x: 0.5,
+			y: 1.5
+		},
+		startVelocity: 100
+	})
+}
+
 function getPosition(element) {
 	const rect = element.getBoundingClientRect()
 	return {
