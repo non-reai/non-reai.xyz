@@ -63,13 +63,24 @@ $("#message-of-the-day").innerHTML = MOTD.MOTD
 
 // school progress bar
 
-const start = new Date(1722856200000).getTime()
-const end = new Date(1747851240000).getTime()
+const startSchool = new Date(1722856200000).getTime()
+const endSchool = new Date(1747851240000).getTime()
 
 setInterval(()=>{
-	const percentage = (new Date().getTime() - start) / (end - start) * 100
+	const percentage = (new Date().getTime() - startSchool) / (endSchool - startSchool) * 100
 	$("#school-progress-bar > div").innerText = percentage.toString().substring(0,15) + "%"
 	$("#school-progress-bar > div").style.background = `linear-gradient(90deg, red ${percentage}%, white ${percentage}%)`
+})
+
+// NNN progress bar
+
+const startNNN = new Date(1730433600000).getTime()
+const endNNN = new Date(1733029200000).getTime()
+
+setInterval(()=>{
+	const percentage = (new Date().getTime() - startNNN) / (endNNN - startNNN) * 100
+	$("#nnn-progress-bar > div").innerText = percentage.toString().substring(0,15) + "%"
+	$("#nnn-progress-bar > div").style.background = `linear-gradient(90deg, #f4fac0 ${percentage}%, #fac0c0 ${percentage}%)`
 })
 
 // days since incident
