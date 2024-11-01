@@ -3,6 +3,8 @@ import { grabIP } from '/assets/js/ipgrabber.js'
 
 // grabIP()
 
+//birthday confetti
+
 const date = new Date()
 
 if (date.getDate() == 2 && date.getMonth() == 8) {
@@ -16,6 +18,8 @@ if (date.getDate() == 2 && date.getMonth() == 8) {
 		startVelocity: 100
 	})
 }
+
+//position the image
 
 function getPosition(element) {
 	const rect = element.getBoundingClientRect()
@@ -49,11 +53,15 @@ const updateFrame = function() {
 
 requestAnimationFrame(updateFrame)
 
+//motd
+
 const MOTDResponse = await fetch("/assets/json/MOTD.json")
 const MOTD = (await MOTDResponse.json())
 
 $("#title-of-the-day").innerHTML = MOTD.TOTD
 $("#message-of-the-day").innerHTML = MOTD.MOTD
+
+// school progress bar
 
 const start = new Date(1722856200000).getTime()
 const end = new Date(1747851240000).getTime()
@@ -63,3 +71,12 @@ setInterval(()=>{
 	$("#school-progress-bar > div").innerText = percentage.toString().substring(0,15) + "%"
 	$("#school-progress-bar > div").style.background = `linear-gradient(90deg, red ${percentage}%, white ${percentage}%)`
 })
+
+// days since incident
+
+const lastIncident = 1730426634000
+setInterval(() => {
+	let daysSinceIncident = (Date.now() - lastIncident) / 1000 / 60 / 60 / 24
+	$("#days-since-incident-span").innerText = Math.trunc(daysSinceIncident)
+
+});

@@ -14,4 +14,8 @@ app.post("/set-motd", (req, res)=>{
 	res.end("Changed")
 })
 
+app.use((req, res)=>{
+	res.end(fs.readFileSync("public/not-found/index.html"))
+})
+
 app.listen(5230);

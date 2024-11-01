@@ -78,6 +78,11 @@
 	background-color: white;
 }
 
+#days-since-incident {
+	background-color: rgb(255, 255, 180);
+	margin: 30px;
+}
+
 * {
 	/* background-color: rgba(0,255,0,0.1); */
 }
