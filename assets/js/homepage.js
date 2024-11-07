@@ -85,7 +85,7 @@ setInterval(()=>{
 
 // days since incident
 
-const lastIncident = 1730426400000
+const lastIncident = 1730947598000
 setInterval(() => {
 	let daysSinceIncident = (Date.now() - lastIncident) / 1000 / 60 / 60 / 24
 	$("#days-since-incident-span").innerText = Math.trunc(daysSinceIncident)
