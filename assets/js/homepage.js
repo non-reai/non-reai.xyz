@@ -82,12 +82,3 @@ setInterval(()=>{
 	$("#nnn-progress-bar > div").innerText = percentage.toString().substring(0,15) + "%"
 	$("#nnn-progress-bar > div").style.background = `linear-gradient(90deg, #f4fac0 ${percentage}%, #fac0c0 ${percentage}%)`
 })
-
-// days since incident
-
-const lastIncident = 1731689097000
-setInterval(() => {
-	let daysSinceIncident = (Date.now() - lastIncident) / 1000 / 60 / 60 / 24
-	$("#days-since-incident-span").innerText = Math.trunc(daysSinceIncident)
-
-});
