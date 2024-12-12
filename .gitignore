@@ -3,4 +3,5 @@ assets/json/MOTD.json
 .replit
 replit.nix
 .env
+portfolio/
 .devcontainer/

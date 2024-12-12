@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link href="/assets/css/common.css" rel="stylesheet">
+		<link href="/assets/css/project.css" rel="stylesheet">
+		<link rel="icon" type="image/png" sizes="32x32" href="/assets/images/pfp.png">
+		
+		<meta name="viewport" content="width=device-width">
+		
+		<title>Non_Reai</title>
+		<meta name="title" content="Non_Reai" />
+		<meta name="description" content="whats up gang!!!!!!!" />
+
+		<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
+	</head>
+	<body>
+		<nav></nav>
+		<h1 style="margin-left: 5vw; margin-bottom: 10px;"><%= title %></h1>
+		<h5 style="margin-left:5vw; margin-top: 0; color: rgba(0,0,0,0.3);"><%= new Date(date).toLocaleString() %></h5>
+		<section id="project">
+			<%- content %>
+		</section>
+		<footer></footer>
+		<script type="module" src="/assets/js/nav.js"></script>
+	</body>
+</html>

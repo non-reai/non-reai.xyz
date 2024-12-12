@@ -78,33 +78,6 @@
 	background-color: white;
 }
 
-/*
-NNN 
-*/
-
-#nnn-progress-bar {
-	align-items: center;
-}
-
-#nnn-progress-bar > h1 {
-	text-align: center;
-}
-
-#nnn-progress-bar > div {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	font-family: "Courier New";
-	font-size: 2rem;
-	height: 10vh;
-	margin: 100px;
-	margin-top: 0;
-	width: 80%;
-	background-color: white;
-}
-
-/* NNN end */
-
 #days-since-incident {
 	background-color: rgb(255, 255, 180);
 	margin: 30px;
