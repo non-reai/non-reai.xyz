@@ -1,84 +1,105 @@
-import { $ } from '/assets/js/selectorUtils.js'
-import { grabIP } from '/assets/js/ipgrabber.js'
+import { $, $$ } from './utils.js'
 
-// grabIP()
+// glowy effect
 
-//birthday confetti
+let offset = 0
+let targetOffset = 0
 
-const date = new Date()
-
-if (date.getDate() == 2 && date.getMonth() == 8) {
-	confetti({
-		particleCount: 1000,
-		spread: 180,
-		origin: {
-			x: 0.5,
-			y: 1.5
-		},
-		startVelocity: 100
-	})
+function lerp(a, b, t) {
+    return (b - a) * t + a
 }
 
-//position the image
+window.addEventListener('mousemove', (e)=>{
+    const x = e.clientX
+    const y = -e.clientY
+    targetOffset = (x + y) / 30
+    // const angle = (x + y) / 50 + 44
 
-function getPosition(element) {
-	const rect = element.getBoundingClientRect()
-	return {
-		top: rect.top + window.scrollY,
-		bottom: rect.bottom + window.scrollY,
-		left: rect.left + window.scrollX,
-		right: rect.right + window.scrollX,
-		height: rect.height,
-		width: rect.width,
-	}
-}
-
-const updateFrame = function() {
-	window.innerWidth
-	const rect = getPosition($("#introduction > div:nth-child(2) > img"))
-	const arrowElement = $("#introduction > div:nth-child(1) > div")
-
-	if (window.innerWidth >= 1000) {
-		arrowElement.classList.remove("no-display")
-		arrowElement.style.top = `${rect.top + rect.height - 100}px`
-		arrowElement.style.right = `${window.innerWidth - rect.left + 30}px`
-	} else {
-		arrowElement.classList.add("no-display")
-	}
-	
-	
-	
-	requestAnimationFrame(updateFrame)
-}
-
-requestAnimationFrame(updateFrame)
-
-//motd
-
-const MOTDResponse = await fetch("/assets/json/MOTD.json")
-const MOTD = (await MOTDResponse.json())
-
-$("#title-of-the-day").innerHTML = MOTD.TOTD
-$("#message-of-the-day").innerHTML = MOTD.MOTD
-
-// school progress bar
-
-const startSchool = new Date(1722856200000).getTime()
-const endSchool = new Date(1747842300000).getTime()
-
-setInterval(()=>{
-	const percentage = (new Date().getTime() - startSchool) / (endSchool - startSchool) * 100
-	$("#school-progress-bar > div").innerText = percentage.toString().substring(0,15) + "%"
-	$("#school-progress-bar > div").style.background = `linear-gradient(90deg, red ${percentage}%, white ${percentage}%)`
+    $(".shine").style.backgroundImage = `repeating-linear-gradient(44deg,rgba(66, 66, 66, 1) ${offset}%, rgba(102, 102, 102, 1) ${17 + offset}%, rgba(66, 66, 66, 1) ${29 + offset}%, rgba(66, 66, 66, 1) ${40 + offset}%, rgba(114, 114, 114, 1) ${48 + offset}%, rgba(66, 66, 66, 1) ${57 + offset}%, rgba(138, 138, 138, 1) ${69 + offset}%, rgba(66, 66, 66, 1) ${82 + offset}%, rgba(112, 112, 112, 1) ${91 + offset}%, rgba(66, 66, 66, 1) ${100 + offset}%)`
 })
 
-// NNN progress bar
+setInterval(() => {
+    offset = lerp(offset, targetOffset, 0.05)
+},20);
 
-// const startNNN = new Date(1730433600000).getTime()
-// const endNNN = new Date(1733029200000).getTime()
+// gallery
 
-// setInterval(()=>{
-// 	const percentage = (new Date().getTime() - startNNN) / (endNNN - startNNN) * 100
-// 	$("#nnn-progress-bar > div").innerText = percentage.toString().substring(0,15) + "%"
-// 	$("#nnn-progress-bar > div").style.background = `linear-gradient(90deg, #f4fac0 ${percentage}%, #fac0c0 ${percentage}%)`
+const GALLERY_KEY = (await (await fetch("/api/access-token")).text())
+
+const listFolderResponse = (await fetch("https://api.dropboxapi.com/2/files/list_folder", {
+    method: "POST",
+    headers: {
+        "Content-Type": "application/json",
+        "Authorization": "Bearer " + GALLERY_KEY
+    },
+    body: JSON.stringify({
+        "include_deleted": false,
+        "include_has_explicit_shared_members": false,
+        "include_media_info": false,
+        "include_mounted_folders": false,
+        "include_non_downloadable_files": false,
+        "path": "",
+        "recursive": false
+    })
+}))
+
+const entries = (await listFolderResponse.json()).entries
+
+const entriesFiltered = entries.sort((a, b)=>{
+    return (new Date(a.client_modified).getTime()) < (new Date(b.client_modified).getTime()) ? 1 : -1
+})
+
+const images = []
+
+let nextIndex = 0
+
+entriesFiltered.forEach(async (imageData, index) => {
+    // download image from id
+    const imageResponse = (await fetch("https://content.dropboxapi.com/2/files/download", {
+        method: "POST",
+        headers: {
+            "Dropbox-API-Arg": JSON.stringify({ "path": imageData.id }),
+            "Authorization": "Bearer " + GALLERY_KEY
+        },
+    }))
+
+    const imageBlob = await imageResponse.blob()
+    const imageURL = URL.createObjectURL(imageBlob)
+
+    const image = document.createElement("img")
+    image.src = imageURL
+    const interval = setInterval(() => {
+        if (nextIndex == index) {
+            images.push(image)
+            $("#gallery > div").appendChild(image)
+            clearInterval(interval)
+            nextIndex++
+        }
+    });
+});
+
+await new Promise(res => {
+    let interval = setInterval(() => {
+        if (nextIndex >= Math.min(7, entriesFiltered.length)) {
+            clearInterval(interval)
+            res()
+        }
+    });
+})
+
+$$(".gallery-placeholder").forEach(placeholder => {
+    placeholder.remove()
+})
+
+// images.forEach((image)=>{
+//     $("#gallery > div").appendChild(image)
 // })
+
+// let msnry = new Masonry('#gallery > div', {
+//     // options
+//     itemSelector: '#gallery > div > img',
+//     columnWidth: 70,
+//     fitWidth: true,
+//     gutter: 10,
+//     horizontalOrder: true,
+// });

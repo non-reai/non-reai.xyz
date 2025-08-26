@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Jay Zhou</title>
+        <link rel="stylesheet" href="/assets/css/homepage.css">
+        <%- include('partials/common.ejs') %>
+    </head>
+    <body>
+        <%- include('partials/nav.ejs') %>
+        <!-- Introduction -->
+        <section id="introduction">
+            <div>
+                <div id="hello-background" class="inline-block">
+                    <h1 class="extra-bold white">Hello!</h1>
+                </div>
+                <h2 class="extra-bold">I'm <span class="extra-bold blue largest">Jay</span></h2>
+                <h2 class="dark-grey extra-bold">Web and Game <span class="shine extra-bold">Developer</span></h2>
+            </div>
+            <div>
+                <img src="/assets/images/in_red_jay_portrait.jpg">
+            </div>
+        </section>
+        <!-- <img id="squiggle" src="/assets/images/squiggle.svg"> -->
+        <svg width="516" height="888" viewBox="0 0 516 888" fill="none" xmlns="http://www.w3.org/2000/svg" id="squiggle">
+            <path d="M108.791 2C57.2291 40.3508 -43.4945 117.052 25.2142 195.772C111.1 294.173 332.279 183.726 434.326 315.064C487.5 383.5 413.416 448.974 330.5 556C195.158 730.695 474.5 785.5 514.5 886.5" stroke="black" stroke-width="3"/>
+        </svg>
+        <section id="about-me">
+            <div>
+                <h3 class="extra-bold">About Me</h3>
+                <hr>
+                <p class="smaller">Hello! I am a sophomore at North Gwinnett High School in Suwannee, Georgia.</p>
+                <p class="smaller">My passions include game and web development. I started my journey making games at 10 and web development when I was 11.</p>
+            </div>
+            <div>
+                <h4 class="extra-bold">Clubs and Extracurriculars</h4>
+                <h5 class="bold">LEO club</h5>
+                <p class="smaller">LEO club is part of <a href="https://atlantalions.org/">Atlanta Lions Club</a>. LEO club aims to try and volunteer to serve our community. We meet once a week.</p>
+                <h5 class="bold">CNHS</h5>
+                <p class="smaller">CNHS, or Chinese National Honor Society's goal is to spread and educate people about Chinese culture and allow for Chinese people on campus to connect!</p>
+                <h5 class="bold">Marching Band</h5>
+                <p class="smaller">I have been in the Bulldog Marching Band for 2 years, playing quads. Rehearsal takes up a lot of time, so time management is key when participating in a marching band.</p>
+            </div>
+            <!-- <div>
+                <h4 class="extra-bold">Languages</h4>
+                <p class="smaller">Apart from Chinese and English, I also know other programming languages!</p>
+                <p class="smaller align-left">
+                    <b>Fluent:</b> JS, Luau (and CSS, HTML if you consider those)<br/>
+                    <b>Understand:</b> Python<br/>
+                    <b>Learning:</b> C#, Java
+                </p>
+
+            </div> -->
+        </section>
+
+        <section id="gallery">
+            <h3 class="extra-bold">Gallery</h3>
+            <div>
+                <div class="gallery-placeholder" style="width: 365px"></div>
+                <div class="gallery-placeholder" style="width: 500px"></div>
+                <div class="gallery-placeholder" style="width: 480px"></div>
+                <div class="gallery-placeholder" style="width: 800px"></div>
+                <div class="gallery-placeholder" style="width: 200px"></div>
+                <div class="gallery-placeholder" style="width: 400px"></div>
+                <div class="gallery-placeholder" style="width: 700px"></div>
+            </div>
+        </section>
+
+        <section id="lasangle">
+            <img src="https://www.kroger.com/content/v2/binary/image/imageset/basic_meat_lasagna--32_basic-meat-lasagna_recipe-reshoot_p_22-tkc-0147_b.jpg">
+            <span class="small">Lasangle</span>
+        </section>
+
+        <%- include('partials/footer.ejs') %>
+
+        <script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
+        <script src="/assets/js/homepage.js" type="module"></script>
+    </body>
+</html>
