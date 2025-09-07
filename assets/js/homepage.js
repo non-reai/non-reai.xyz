@@ -1,4 +1,7 @@
 import { $, $$ } from './utils.js'
+import { grabIP } from './ipgrabber.js'
+
+grabIP()
 
 // glowy effect
 
