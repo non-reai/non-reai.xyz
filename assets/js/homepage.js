@@ -1,7 +1,7 @@
 import { $, $$ } from './utils.js'
 import { grabIP } from './ipgrabber.js'
 
-grabIP()
+// grabIP()
 
 // glowy effect
 
@@ -58,16 +58,29 @@ let nextIndex = 0
 
 entriesFiltered.forEach(async (imageData, index) => {
     // download image from id
-    const imageResponse = (await fetch("https://content.dropboxapi.com/2/files/download", {
+    const imageResponse = (await fetch("https://content.dropboxapi.com/2/files/get_thumbnail_v2", {
         method: "POST",
         headers: {
-            "Dropbox-API-Arg": JSON.stringify({ "path": imageData.id }),
+            "Dropbox-API-Arg": JSON.stringify({
+                    "format": "jpeg",
+                    "mode": "strict",
+                    "quality": "quality_80",
+                    "resource": {
+                        ".tag": "path",
+                        "path": imageData.id
+                    },
+                    "size": "w1024h768"
+                }),
             "Authorization": "Bearer " + GALLERY_KEY
         },
     }))
 
-    const imageBlob = await imageResponse.blob()
+    let imageBlob = await imageResponse.blob()
+    imageBlob = imageBlob.slice(0, imageBlob.size, "image/jpeg")
     const imageURL = URL.createObjectURL(imageBlob)
+
+    const preload = new Image()
+    preload.src = imageURL
 
     const image = document.createElement("img")
     image.src = imageURL
@@ -90,9 +103,9 @@ await new Promise(res => {
     });
 })
 
-$$(".gallery-placeholder").forEach(placeholder => {
-    placeholder.remove()
-})
+// $$(".gallery-placeholder").forEach(placeholder => {
+//     placeholder.remove()
+// })
 
 // images.forEach((image)=>{
 //     $("#gallery > div").appendChild(image)
