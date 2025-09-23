@@ -1,0 +1,23 @@
+body {
+    padding-top: 50px;
+    background-color: #FFFBDD;
+    padding-left: 30px;
+}
+
+body > a {
+    display: inline-block;
+    background-color: #3955d1;
+    margin: 20px;
+    padding: 30px;
+    font-size: 4rem;
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 8px;
+    transition: scale 200ms;
+}
+
+body > a:hover {
+    scale: 1.03;
+}
+

@@ -14,15 +14,18 @@ app.use("/assets", express.static('assets'));
 
 app.use("/api", api)
 
-app.use("/", (req, res)=>{
+app.get("/", (req, res)=>{
 	res.render('homepage.ejs')
-});
+})
+
+app.get("/gallery", (req, res)=>{
+	res.render('gallery.ejs')
+})
 
 app.use(express.json())
 
 app.use((req, res)=>{
-	res.setHeader('content-type','text/html')
-	res.end(fs.readFileSync("public/not-found/index.html"))
+	res.render('404.ejs')
 })
 
 app.listen(5230);
